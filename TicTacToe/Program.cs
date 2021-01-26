@@ -4,10 +4,10 @@ namespace TicTacToe
 {
     class Program
     {
-        
-        static public string[] arr = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-
-        static public void board()
+        //initialize the array from 1 to 9 ( represent each box of the board )
+        static public string[] arr = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+        //printing the board manually
+        static public void Board()
         {
             Console.WriteLine("\n\n\n\t  {0}  |  {1}  |  {2}  ", arr[1], arr[2], arr[3]);
             Console.WriteLine("\n\t_ _ _ _ _ _ _ _ _  \n");
@@ -15,11 +15,11 @@ namespace TicTacToe
             Console.WriteLine("\n\t_ _ _ _ _ _ _ _ _  \n");
             Console.WriteLine("\t  {0}  |  {1}  |  {2} \n\n ", arr[7], arr[8], arr[9]);
         }
-
-        static public void reset()
+        //reseting the board / update the game progress
+        static public void Reset()
         {
             Console.Clear();
-            board();
+            Board();
         }
 
         static public bool WinCondition()
@@ -62,7 +62,7 @@ namespace TicTacToe
         }
         static void Main(string[] args)
         {
-            board();
+            Board();
 
             int turn = 0, choice;
             bool win = false;
@@ -94,13 +94,13 @@ namespace TicTacToe
                                 arr[choice] = "X";
                                 turn += 1;
                                 WinCondition();
-                                reset();
+                                Reset();
                                 if (WinCondition() == true)
                                 {
                                     Console.BackgroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Congrats! Player 1 won");
                                     Console.ResetColor();
-                                    bool checkWin = playAgain.PlayAgain();
+                                    bool checkWin = Replay.PlayAgain();
                                     if (checkWin == false)
                                     {
                                         win = true;
@@ -115,7 +115,7 @@ namespace TicTacToe
                                             arr[i] = plus;
                                         }
                                         turn = 0;
-                                        reset();
+                                        Reset();
                                     }
 
                                 }
@@ -149,13 +149,13 @@ namespace TicTacToe
                                 arr[choice] = "O";
                                 turn += 1;
                                 WinCondition();
-                                reset();
+                                Reset();
                                 if (WinCondition() == true)
                                 {
                                     Console.BackgroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Congrats! Player 2 won");
                                     Console.ResetColor();
-                                    bool checkWin = playAgain.PlayAgain();
+                                    bool checkWin = Replay.PlayAgain();
                                     if (checkWin == false)
                                     {
                                         win = true;
@@ -170,7 +170,7 @@ namespace TicTacToe
                                             arr[i] = plus;
                                         }
                                         turn = 0;
-                                        reset();
+                                        Reset();
                                     }
 
                                 }
