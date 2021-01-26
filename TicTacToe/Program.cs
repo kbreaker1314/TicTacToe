@@ -133,7 +133,7 @@ namespace TicTacToe
                     {
                         choice = 0;
                         turn = 1;
-                        Console.WriteLine("Choose again");
+                        Console.WriteLine("Choose again please");
                     }
                     if (choice != 0)
                     {
