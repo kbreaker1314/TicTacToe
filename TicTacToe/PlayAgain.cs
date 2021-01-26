@@ -1,7 +1,7 @@
 ﻿using System;
 namespace TicTacToe
 {
-    internal class playAgain
+    class playAgain
     {
 
         static public bool PlayAgain()
@@ -10,6 +10,7 @@ namespace TicTacToe
             string str = Console.ReadLine();
             if (str == "y")
             {
+                Console.WriteLine("Game is restarted");
                 return true;
             }
             else return false;
