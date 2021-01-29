@@ -21,9 +21,10 @@ namespace TicTacToe
             Console.Clear();
             Board();
         }
-
+        //all the possibilities to win in a normal tic tac toe game
         static public bool WinCondition()
         {
+            //winning horizontally
             if (arr[1] == arr[2] && arr[2] == arr[3] && arr[1] == arr[3])
             {
                 return true;
@@ -37,6 +38,7 @@ namespace TicTacToe
                 return true;
             }
 
+            //winning vertically
             if (arr[1] == arr[4] && arr[1] == arr[7] && arr[4] == arr[7])
             {
                 return true;
@@ -50,6 +52,8 @@ namespace TicTacToe
                 return true;
             }
 
+
+            //winning diagonally
             if (arr[1] == arr[5] && arr[1] == arr[9] && arr[5] == arr[9])
             {
                 return true;
@@ -62,23 +66,30 @@ namespace TicTacToe
         }
         static void Main(string[] args)
         {
+            //printing the board
             Board();
 
+            //define turn
             int turn = 0, choice;
+            //define win 
             bool win = false;
-
+            // do - while statement to keep the game running as long as the variable "win" is false
             do
             {
+                //switching turn from player 1 and 2 by assign player to remaining of turn % 2
                 if (turn % 2 == 0)
                 {
                     Console.Write("\nPlayer1's turn (X)\n");
                     choice = Int32.Parse(Console.ReadLine());
+                    // check if player input is a valid number
                     if (choice < 1 || choice > 9)
                     {
+                        //if the player picked an invalid number, choice = 0 will prevent the next statement to run and turn = 0 to keep the turn on player 1 until a valid input is use
                         choice = 0;
                         turn = 0;
                         Console.WriteLine("Choose again");
                     }
+                    // choice is not = 0 ( if an user input a number between 1 and 9)
                     if (choice != 0)
                     {
                         if (arr[choice] != "X" || arr[choice] != "O")
