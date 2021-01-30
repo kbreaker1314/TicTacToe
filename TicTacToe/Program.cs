@@ -92,43 +92,44 @@ namespace TicTacToe
                     // choice is not = 0 ( if an user input a number between 1 and 9)
                     if (choice != 0)
                     {
-                        if (arr[choice] != "X" || arr[choice] != "O")
+                        // check if the position is already taken
+                        if (arr[choice] == "X" || arr[choice] == "O")
                         {
-
-                            if (arr[choice] == "X" || arr[choice] == "O")
+                            //if position is taken, give turn back to the player and ask to choose again
+                            Console.WriteLine("Choose again.");
+                            turn = 2;
+                        }
+                        else
+                        {
+                            //assign string "X" to the array position that the user input that is valid
+                            arr[choice] = "X";
+                            //pass the turn to next player using even-odd strategy
+                            turn += 1;
+                            //check if the player meet one of the win condition
+                            WinCondition();
+                            //re-print the board to update the game progress
+                            Reset();
+                            if (WinCondition() == true)
                             {
-                                Console.WriteLine("Choose again.");
-                                turn = 2;
-                            }
-                            else
-                            {
-                                arr[choice] = "X";
-                                turn += 1;
-                                WinCondition();
-                                Reset();
-                                if (WinCondition() == true)
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Congrats! Player 1 won");
+                                Console.ResetColor();
+                                bool checkWin = Replay.PlayAgain();
+                                if (checkWin == false)
                                 {
-                                    Console.BackgroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Congrats! Player 1 won");
-                                    Console.ResetColor();
-                                    bool checkWin = Replay.PlayAgain();
-                                    if (checkWin == false)
+                                    win = true;
+                                }
+                                else if (checkWin == true)
+                                {
+                                    for (int i = 1; i < 10; i++)
                                     {
-                                        win = true;
+                                        int plus2 = i;
+                                        string plus = plus2.ToString();
+                                        Convert.ToInt32(plus);
+                                        arr[i] = plus;
                                     }
-                                    else if (checkWin == true)
-                                    {
-                                        for (int i = 1; i < 10; i++)
-                                        {
-                                            int plus2 = i;
-                                            string plus = plus2.ToString();
-                                            Convert.ToInt32(plus);
-                                            arr[i] = plus;
-                                        }
-                                        turn = 0;
-                                        Reset();
-                                    }
-
+                                    turn = 0;
+                                    Reset();
                                 }
 
                             }
@@ -199,3 +200,7 @@ namespace TicTacToe
         }
     }
 }
+
+/// Improvement ideas :     -Make the program that it wont crash when user input a character (try-catch?)
+///                         -Shorten repeated if-else statement for both players (maybe a method that can share between players and some sort of 
+///                             variable that keep the turn value on track?)
