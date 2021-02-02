@@ -109,11 +109,14 @@ namespace TicTacToe
                             WinCondition();
                             //re-print the board to update the game progress
                             Reset();
+                            // check if one of the winning condition is met
                             if (WinCondition() == true)
                             {
+                                //changing the text color to red and back to default
                                 Console.BackgroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Congrats! Player 1 won");
                                 Console.ResetColor();
+                                //check if user wants to rematch, if true -- convert all the boxes to numbers from 1-9, if false -- do-while will end.
                                 bool checkWin = Replay.PlayAgain();
                                 if (checkWin == false)
                                 {
@@ -128,6 +131,7 @@ namespace TicTacToe
                                         Convert.ToInt32(plus);
                                         arr[i] = plus;
                                     }
+                                    //give turn back to player1
                                     turn = 0;
                                     Reset();
                                 }
@@ -137,8 +141,10 @@ namespace TicTacToe
                         }
                     }
                 }
+                //player2's turn if remainder is odd
                 else if (turn % 2 == 1)
                 {
+                    //duplicate codes from player1
                     Console.Write("\nPlayer2's turn (O)\n");
                     choice = Int32.Parse(Console.ReadLine());
                     if (choice < 1 || choice > 9)
